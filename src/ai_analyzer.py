@@ -1,12 +1,28 @@
+import os
+from openai import OpenAI
+
+
+client = OpenAI(
+    api_key=os.getenv("DEEPSEEK_API_KEY"),
+    base_url="https://api.deepseek.com"
+)
+
+
 def analyze_with_ai(prompt):
-    response = f"""
-    AI分析结果:
-    根据提供的财务数据：
 
-1. 当前企业经营情况需要结合利润率和支出结构判断。
+    response = client.chat.completions.create(
+        model="deepseek-chat",
+        messages=[
+            {
+                "role": "system",
+                "content": "你是一名专业财务分析师。"
+            },
+            {
+                "role": "user",
+                "content": prompt
+            }
+        ],
+        temperature=0.3
+    )
 
-2. 建议重点关注最大支出类别。
-
-3. 对异常支出进行人工审核
-"""
-    return response
+    return response.choices[0].message.content

@@ -1,5 +1,5 @@
 def generate_report(metrics, abnormal_count, insights, ai_result):
-    report = f"""财务分析报告
+    financial_report = f"""财务分析报告
 总收入: {metrics["总收入"]}
 总支出: {metrics["总支出"]}
 利润: {metrics["利润"]}
@@ -15,6 +15,6 @@ ai分析
 """
 
     with open("output/financial_report.txt", "w", encoding="utf-8") as f:
-        f.write(report)
-
-    return report
+        f.write(financial_report)
+    print("财务报告已经保存")
+    return financial_report
