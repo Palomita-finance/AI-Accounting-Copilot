@@ -1,64 +1,65 @@
 import matplotlib.pyplot as plt
-from matplotlib.font_manager import FontProperties
+from matplotlib.font_manager import FontProperties, findfont
+import matplotlib.font_manager as fm
+import os
 
 
-# 指定中文字体（Windows微软雅黑）
+print("chart.py loaded")
+
+
+# 自动寻找中文字体
+font_path = findfont(
+    fm.FontProperties(
+        family="Microsoft YaHei"
+    )
+)
+
 font = FontProperties(
-    fname=r"C:\Windows\Fonts\msyh.ttc"
+    fname=font_path
 )
 
 
+print("使用字体:", font.get_name())
+
+
 def create_expense_chart(categories, amounts):
-    """
-    创建支出分析柱状图
 
-    输入：
-    categories: 支出类别列表
-    amounts: 每个类别对应的支出金额列表
-
-    输出：
-    在output文件夹生成expense_chart.png
-    """
-
-    # 设置图片大小
     plt.figure(figsize=(8, 5))
 
-    # 绘制柱状图
     plt.bar(categories, amounts)
 
-    # 标题
     plt.title(
         "Expense Analysis",
         fontproperties=font
     )
 
-    # x轴名称
     plt.xlabel(
         "类别",
         fontproperties=font
     )
 
-    # y轴名称
     plt.ylabel(
         "金额",
         fontproperties=font
     )
 
-    # x轴文字旋转45度，防止类别太长重叠
     plt.xticks(
         rotation=45,
         fontproperties=font
     )
 
-    # 自动调整布局，避免文字被截断
     plt.tight_layout()
 
-    # 保存图片
+    # 创建输出目录（如果不存在）
+    os.makedirs(
+        "output",
+        exist_ok=True
+    )
+
     plt.savefig(
         "output/expense_chart.png",
         dpi=300,
         bbox_inches="tight"
     )
 
-    # 关闭图片对象，释放资源
     plt.close()
