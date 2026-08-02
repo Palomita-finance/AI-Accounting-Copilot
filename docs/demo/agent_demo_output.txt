@@ -1,0 +1,41 @@
+================================
+AI Accounting Copilot V2.0 Demo
+================================
+
+[1] Agent Workflow
+
+--- Agent Step 1 ---
+Decision: metrics_tool
+Tool Result: Successfully calculated financial metrics
+
+--- Agent Step 2 ---
+Decision: abnormal_tool
+Tool Result: Detected abnormal transactions
+
+--- Agent Step 3 ---
+Decision: trend_tool
+Tool Result: Generated monthly expense trend
+
+--- Agent Step 4 ---
+Decision: insight_tool
+Tool Result: Generated financial insights
+
+--- Agent Finished ---
+Generating AI Financial Report
+
+[2] Financial Summary
+
+总收入:       0 元
+总支出: 679,431 元
+利润:   -679,431 元
+利润率: 无法计算（当前无收入）
+最大支出类别: 软件服务
+
+[3] AI Financial Diagnosis
+
+财务风险总结: 当前处于零收入、持续支出状态，存在明显经营风险。
+异常交易分析: 检测到 20 笔大额支出，部分摘要与费用类别不匹配。
+改进建议:
+- 优先核查收入记录与现金流状况。
+- 复核异常交易，完善费用分类与审批机制。
+- 梳理软件服务支出，减少重复或闲置订阅。
