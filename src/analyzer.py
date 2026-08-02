@@ -1,6 +1,10 @@
+from config import ABNORMAL_THRESHOLD
+
+
 def detect_abnormal_expense(data):
-    abnormal = []
-    for index, row in data.iterrows():
-        if row["支出"] > 1000:
-            abnormal.append(row)
+
+    abnormal = data[
+        data["支出"] > ABNORMAL_THRESHOLD
+    ]
+
     return abnormal

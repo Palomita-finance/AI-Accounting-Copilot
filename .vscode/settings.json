@@ -1,7 +1,7 @@
 {
-    {
-        "python.analysis.extraPaths": [
-            "${workspaceFolder}"
-        ]
-    }
+  "python.analysis.extraPaths": [
+    "${workspaceFolder}"
+  ],
+  "python.defaultInterpreterPath": "D:\\SCIENCE\\miniconda3\\envs\\ai-accounting-copilot\\python.exe",
+  "python.terminal.activateEnvironment": true
 }

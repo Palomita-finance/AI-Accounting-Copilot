@@ -1,84 +1,50 @@
-# AI-Accounting-Copilot
+# AI Accounting Copilot V1
 
-An AI-assisted financial analysis system that automates expense analysis, anomaly detection, and financial reporting.
+一个基于 LLM Router 和工具调用循环的财务分析 Agent。它读取 Excel 财务数据，依次计算核心指标、检测异常支出、分析月度趋势、生成业务洞察，最后由 AI 汇总为中文分析结果。
 
-## Project Overview
+## Agent 流程
 
-Traditional financial data processing often requires repetitive manual work, such as checking expense records, summarizing financial indicators, and preparing reports.
+```text
+用户问题 -> LLM Router -> Agent Loop -> Tool Executor
+         -> Context 保存状态 -> AI Response 生成最终回答
+```
 
-This project uses Python and data analysis techniques to build an automated accounting assistant.
+工具按依赖顺序执行：`metrics_tool -> abnormal_tool -> trend_tool -> insight_tool -> finish`。成功执行的工具才会写入 `completed_tools`，循环会阻止重复和越级调用。
 
-The system can:
+## 运行
 
-- Analyze financial transaction data
-- Calculate key financial indicators
-- Detect abnormal expenses
-- Generate financial insights
-- Create automated analysis reports
+1. 安装依赖：`pip install -r requirements.txt`
+2. 在 `.env` 配置 `DEEPSEEK_API_KEY`
+3. 运行：`python main.py`
+4. 测试：`python -m unittest discover -s tests -v`
 
+默认示例数据位于 `data/demo_financial_data.xlsx`。
 
-## Features
+## 项目结构
 
-### 1. Financial Metrics Analysis
-
-Automatically calculate:
-
-- Total income
-- Total expenses
-- Profit
-- Profit margin
-- Largest expense category
-
-
-### 2. Abnormal Expense Detection
-
-Identify suspicious transactions based on predefined rules.
-
-
-### 3. Data Visualization
-
-Generate expense analysis charts.
-
-
-### 4. Automated Financial Reporting
-
-Create structured financial reports containing:
-
-- Financial summary
-- Risk analysis
-- Business insights
-- AI-generated recommendations
-
-
-## Project Structure
-AI-Accounting-Copilot
-├── data
-│   └── financial_data.xls
-├── src
-│   ├── analyzer.py
-│   ├── metrics.py
-│   ├── chart.py
-│   ├── insight.py
-│   ├── ai_prompt.py
+```text
+AI-Accounting-Copilot/
+├── data/
+├── docs/
+├── src/
+│   ├── agent/
+│   │   ├── agent_executor.py
+│   │   ├── agent_loop.py
+│   │   ├── agent_response.py
+│   │   ├── context.py
+│   │   ├── llm_router.py
+│   │   └── tools.py
 │   ├── ai_analyzer.py
-│   └── report.py
-├── output
-│   ├── expense_chart.png
-│   └── financial_report.txt
-└── main.py
+│   ├── analyzer.py
+│   ├── insight.py
+│   ├── metrics.py
+│   ├── report.py
+│   └── trend.py
+├── tests/
+├── config.py
+├── generate_test_data.py
+├── main.py
+└── requirements.txt
+```
 
-
-## Tech Stack
-
-- Python
-- Pandas
-- Matplotlib
-- Git/GitHub
-
-
-## Future Improvements
-
-- Integrate real LLM APIs
-- Support automatic invoice processing
-- Add machine learning based anomaly detection
-- Build web interface
+`report.py` 仅保留为可选的文本导出能力，不参与 Agent 主流程，避免与 `agent_response.py` 重复生成报告。

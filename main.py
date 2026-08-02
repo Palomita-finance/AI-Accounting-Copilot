@@ -1,40 +1,30 @@
 import pandas as pd
 
-from src.analyzer import detect_abnormal_expense
-from src.chart import create_expense_chart
-from src.report import generate_report
-from src.metrics import calculate_metrics
-from src.insight import generate_insight
-from src.ai_prompt import create_financial_prompt
-from src.ai_analyzer import analyze_with_ai
+from src.agent.agent_loop import run_agent
 
 
-data = pd.read_excel("data/financial_data.xls")
+# 读取数据
 
-metrics = calculate_metrics(data)
-
-result = detect_abnormal_expense(data)
-
-print("发现异常数量", len(result))
-
-
-expense_summary = data.groupby("类别")["支出"].sum()
-
-create_expense_chart(
-    expense_summary.index,
-    expense_summary.values
+data = pd.read_excel(
+    "data/demo_financial_data.xlsx"
 )
 
 
-insights = generate_insight(metrics, len(result))
+# 用户问题
 
-prompt = create_financial_prompt(
-    metrics,
-    insights
+question = """
+请分析一下公司的财务风险，
+包括异常支出和经营问题。
+"""
+
+
+# 交给Agent
+
+answer = run_agent(
+    data,
+    question
 )
 
-ai_result = analyze_with_ai(prompt)
 
-financial_report = generate_report(metrics, len(result), insights, ai_result)
-
-print(financial_report)
+print("\nAI分析结果:")
+print(answer)
