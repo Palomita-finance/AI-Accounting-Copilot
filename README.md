@@ -1,107 +1,252 @@
 # AI Accounting Copilot
 
-> An AI-powered accounting analysis agent combining financial analytics with LLM tool orchestration.
+> An AI-powered accounting analysis agent combining deterministic financial analytics with LLM-based tool orchestration and automated financial diagnosis.
 
-AI Accounting Copilot is a portfolio-ready AI application built with Python, Pandas, Streamlit, and DeepSeek. It evolved from a traditional financial analysis pipeline into an LLM Agent that orchestrates deterministic accounting tools before generating a management-oriented diagnosis.
+AI Accounting Copilot is a portfolio-ready AI application built with Python, Pandas, Streamlit, and DeepSeek.
 
-🚀 **Live Demo:** [Open AI Accounting Copilot](https://ai-accounting-copilot-7cjkjuzcvvhbka3bq3d54.streamlit.app/)
+The project evolved from a traditional financial analysis pipeline into an LLM Agent system that coordinates deterministic accounting tools, manages execution context, and generates management-oriented financial diagnosis.
 
-## Demo Preview
+🚀 **Live Demo:** [Open AI Accounting Copilot](https://ai-accounting-copilot-7cjjkjuzcvvhbka3bq3d54.streamlit.app/)
+
+
+---
+
+# Demo Preview
 
 ![AI Accounting Copilot demo](docs/demo.gif)
 
-## Demo
+
+## Dashboard
 
 ![AI Accounting Copilot dashboard](docs/screenshots/dashboard.png)
 
-Additional views: [Agent workflow](docs/screenshots/agent_workflow.png) · [Financial report](docs/screenshots/financial_report.png) · [Abnormal detection](docs/screenshots/abnormal_detection.png)
+Additional views:
 
-## Features
+- [Agent workflow](docs/screenshots/agent_workflow.png)
+- [Financial report](docs/screenshots/financial_report.png)
+- [Abnormal detection](docs/screenshots/abnormal_detection.png)
 
-- **Excel Financial Analysis** — Reads structured accounting data from `.xlsx` and `.xls` files.
-- **AI Financial Analysis** — Generates a structured diagnosis from completed financial analysis results.
-- **LLM Agent Workflow** — Uses an LLM Router and Agent Loop to coordinate execution.
-- **Financial Tool Calling** — Runs deterministic metrics, anomaly, trend, and insight tools.
-- **Risk Detection** — Identifies abnormal high-value expense transactions.
-- **Trend Analysis** — Aggregates monthly expenses and presents an interactive trend chart.
-- **Interactive Dashboard** — Supports Excel upload, KPI cards, workflow status, tables, and report download.
 
-## Evolution
+---
 
-```text
+# Features
+
+## Excel Financial Analysis
+
+- Reads structured accounting data from `.xlsx` and `.xls` files
+- Validates required financial fields
+- Calculates core financial indicators
+
+Supported fields:
+
+```
+日期 | 摘要 | 类别 | 收入 | 支出
+```
+
+
+## AI Financial Diagnosis
+
+The system combines deterministic analysis results with an LLM to generate:
+
+- Financial risk assessment
+- Cost structure analysis
+- Abnormal transaction explanation
+- Management recommendations
+
+
+## LLM Agent Workflow
+
+Instead of a fixed script pipeline, the system uses:
+
+- LLM Router
+- Agent Loop
+- Tool Executor
+- Agent Context
+
+The LLM decides the next action, while deterministic tools perform reliable financial calculations.
+
+
+## Financial Tool Calling
+
+Current Agent tools:
+
+- `metrics_tool`
+  - Revenue
+  - Expense
+  - Profit
+  - Profit margin
+  - Largest expense category
+
+- `abnormal_tool`
+  - High-value transaction detection
+  - Expense anomaly identification
+
+- `trend_tool`
+  - Monthly expense trend analysis
+
+- `insight_tool`
+  - Financial interpretation and recommendations
+
+
+## Interactive Dashboard
+
+The Streamlit Web application provides:
+
+- Excel upload
+- KPI dashboard
+- Agent workflow visualization
+- Monthly expense charts
+- Abnormal transaction tables
+- AI-generated financial report download
+
+
+---
+
+# Project Evolution
+
+
+```
 v1.0  Traditional Financial Analysis
-  ↓
+        ↓
 v2.0  LLM Agent Architecture
-  ↓
+        ↓
 v2.1  Streamlit Web Interface
-  ↓
+        ↓
 v2.2  Dashboard Productization
-  ↓
+        ↓
 v2.3  Deployment Release
 ```
 
-See the complete [Version History](docs/version_history.md).
 
-## Architecture
+See the complete:
+
+[Version History](docs/version_history.md)
+
+
+---
+
+# Architecture
+
 
 ```mermaid
 flowchart TD
-    U["User Question"] --> L["Agent Loop"]
-    L --> R["LLM Router"]
-    R --> E["Tool Executor"]
-    E --> T["Financial Tools"]
-    T --> M["Metrics"]
-    T --> A["Abnormal Detection"]
-    T --> TR["Trend Analysis"]
-    T --> I["Financial Insight"]
-    M --> C["Agent Context"]
-    A --> C
-    TR --> C
-    I --> C
-    C --> L
-    L -->|"Analysis complete"| F["AI Response"]
+
+U["User Question"] --> R["LLM Router"]
+
+R --> L["Agent Loop"]
+
+L --> E["Tool Executor"]
+
+E --> T["Financial Tools"]
+
+T --> M["Metrics"]
+
+T --> A["Abnormal Detection"]
+
+T --> TR["Trend Analysis"]
+
+T --> I["Financial Insight"]
+
+M --> C["Agent Context"]
+
+A --> C
+
+TR --> C
+
+I --> C
+
+C --> L
+
+L --> F["AI Response"]
 ```
 
-The system does not simply generate text. The LLM decides when and how to call deterministic financial tools. The Agent Loop validates the execution order, successful results are stored in Context, and AI Response generates the final report from the completed analysis state.
 
-### Agent workflow
+The system does not simply generate text.
 
-```text
+The LLM determines which tools should be executed, while financial calculations remain deterministic and transparent.
+
+The Agent Loop manages:
+
+- Tool execution order
+- Completed tool states
+- Context persistence
+- Final response generation
+
+
+## Agent Workflow
+
+
+```
 User Question
-    ↓
-Agent Loop ↔ LLM Router
-    ↓
+
+      ↓
+
+LLM Router
+
+      ↓
+
+Agent Loop
+
+      ↓
+
 Tool Executor
-    ↓
-metrics_tool → abnormal_tool → trend_tool → insight_tool
-    ↓
+
+      ↓
+
+metrics_tool
+      ↓
+abnormal_tool
+      ↓
+trend_tool
+      ↓
+insight_tool
+
+      ↓
+
 Agent Context
-    ↓
+
+      ↓
+
 AI Financial Diagnosis
 ```
 
-## Web Demo
 
-Users can upload Excel financial data and receive an AI-generated financial diagnosis through a browser interface. The Streamlit application provides schema validation, KPI metrics, Agent workflow visualization, monthly expense trends, abnormal transaction review, and Markdown report download.
+---
 
-## Live Demo
+# Web Demo
 
-The application is deployed on Streamlit Cloud:
 
-**Demo URL:** [https://ai-accounting-copilot-7cjkjuzcvvhbka3bq3d54.streamlit.app/](https://ai-accounting-copilot-7cjkjuzcvvhbka3bq3d54.streamlit.app/)
+The application is deployed on Streamlit Cloud.
 
 Users can directly:
 
 - Upload Excel financial data
 - Run AI Agent analysis
-- View the financial dashboard
-- Download the AI-generated report
+- View financial dashboard
+- Review abnormal transactions
+- Download AI-generated reports
+
+
+## Live Demo
+
+
+**Demo URL:**
+
+https://ai-accounting-copilot-7cjjkjuzcvvhbka3bq3d54.streamlit.app/
+
+
+Run locally:
+
 
 ```bash
 streamlit run web_app.py
 ```
 
-## Tech Stack
+
+---
+
+# Tech Stack
+
 
 - Python
 - Pandas
@@ -109,91 +254,193 @@ streamlit run web_app.py
 - DeepSeek LLM
 - OpenAI-compatible Python SDK
 - Agent Architecture
-- OpenPyXL / xlrd
+- OpenPyXL
+- xlrd
 
-## Project Structure
 
-```text
+---
+
+# Project Structure
+
+
+```
 AI-Accounting-Copilot/
-├── .streamlit/                 # Cloud deployment configuration
-├── data/                       # Demo financial data
-├── docs/                       # Architecture, screenshots, release docs
+
+├── .streamlit/
+│   └── Cloud deployment configuration
+
+├── data/
+│   └── Demo financial data
+
+├── docs/
+│   ├── Architecture documentation
+│   ├── Screenshots
+│   ├── Demo GIF
+│   └── Release notes
+
+
 ├── src/
-│   ├── agent/                  # LLM Agent core
-│   ├── web/                    # Streamlit presentation components
-│   ├── ai_analyzer.py          # LLM client and Secrets integration
-│   ├── analyzer.py             # Abnormal expense detection
-│   ├── data_loader.py          # Excel loading
-│   ├── insight.py              # Financial insight rules
-│   ├── metrics.py              # Financial metrics
-│   └── trend.py                # Monthly trend analysis
+
+│   ├── agent/
+│   │   ├── agent_loop.py
+│   │   ├── agent_executor.py
+│   │   ├── agent_response.py
+│   │   ├── context.py
+│   │   ├── llm_router.py
+│   │   └── tools.py
+
+│   ├── web/
+│   │   ├── dashboard.py
+│   │   ├── report_view.py
+│   │   └── ui_components.py
+
+│   ├── ai_analyzer.py
+│   ├── analyzer.py
+│   ├── data_loader.py
+│   ├── insight.py
+│   ├── metrics.py
+│   └── trend.py
+
+
 ├── tests/
-├── main.py                     # CLI entry point
-├── web_app.py                  # Streamlit entry point
+
+├── main.py
+
+├── web_app.py
+
 └── requirements.txt
 ```
 
-## Installation
+
+---
+
+# Installation
+
+
+Clone repository:
+
 
 ```bash
 git clone https://github.com/Palomita-finance/AI-Accounting-Copilot.git
+
 cd AI-Accounting-Copilot
+```
+
+
+Create environment:
+
+
+```bash
 python -m venv .venv
 ```
 
-Activate the environment and install dependencies:
+
+Install dependencies:
+
 
 ```bash
 pip install -r requirements.txt
 ```
 
-### API configuration
 
-For local development, create `.env` in the project root:
+---
+
+# API Configuration
+
+
+Create `.env` in project root:
+
 
 ```env
 DEEPSEEK_API_KEY=your_api_key
 ```
 
-For Streamlit Community Cloud, add `DEEPSEEK_API_KEY` in the app Secrets settings. A safe template is available at `.streamlit/secrets.toml.example`. Never commit a real API key.
 
-### Run the CLI
+For Streamlit Cloud:
+
+Add:
+
+
+```toml
+DEEPSEEK_API_KEY="your_api_key"
+```
+
+
+in Streamlit Secrets.
+
+
+Never commit real API keys.
+
+
+---
+
+# Run
+
+
+## CLI Version
+
 
 ```bash
 python main.py
 ```
 
-### Run the Web dashboard
+
+## Web Version
+
 
 ```bash
 streamlit run web_app.py
 ```
 
-### Run tests
+
+## Tests
+
 
 ```bash
 python -m unittest discover -s tests -v
 ```
 
-## Documentation
 
-- [Project description](docs/project_description.md)
+---
+
+# Documentation
+
+
+- [Project Description](docs/project_description.md)
 - [Architecture](docs/architecture.md)
-- [Version history](docs/version_history.md)
-- [v2.2 Release notes](docs/release_v2.2.md)
-- [v2.3 Release notes](docs/release_v2.3.md)
+- [Version History](docs/version_history.md)
+- [v2.2 Release Notes](docs/release_v2.2.md)
+- [v2.3 Release Notes](docs/release_v2.3.md)
 
-## Future Roadmap
+
+---
+
+# Future Roadmap
+
 
 - Database integration
 - Multi-agent collaboration
 - Local LLM deployment
 - Enterprise accounting workflow
+- Automated financial workflow integration
 
-## Disclaimer
 
-This project is designed for technical demonstration and decision support. It does not provide audit assurance, accounting certification, or investment advice.
+---
 
-## License
+# Disclaimer
 
-This repository does not currently include an open-source license. Add a `LICENSE` file before distributing or accepting external contributions.
+
+This project is designed for technical demonstration and decision-support scenarios.
+
+It does not provide audit assurance, accounting certification, or investment advice.
+
+
+---
+
+# License
+
+
+This repository does not currently include an open-source license.
+
+Add a `LICENSE` file before distributing or accepting external contributions.
+```
