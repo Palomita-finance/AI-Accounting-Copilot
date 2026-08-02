@@ -11,7 +11,11 @@ def render_sidebar():
         st.markdown(
             "将 LLM 工具调度与确定性财务分析结合，生成结构化经营诊断。"
         )
-        st.badge("Version v2.2", icon=":material/new_releases:", color="blue")
+        st.badge(
+            "Deployment Release v2.3",
+            icon=":material/new_releases:",
+            color="blue",
+        )
         st.subheader("Architecture")
         st.write("LLM Agent + Financial Tools")
         st.subheader("Tech stack")

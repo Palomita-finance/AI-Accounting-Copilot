@@ -4,6 +4,8 @@
 
 AI Accounting Copilot is a portfolio-ready AI application built with Python, Pandas, Streamlit, and DeepSeek. It evolved from a traditional financial analysis pipeline into an LLM Agent that orchestrates deterministic accounting tools before generating a management-oriented diagnosis.
 
+🚀 **Live Demo:** [Open AI Accounting Copilot](https://ai-accounting-copilot-7cjkjuzcvvhbka3bq3d54.streamlit.app/)
+
 ## Demo Preview
 
 ![AI Accounting Copilot demo](docs/demo.gif)
@@ -81,6 +83,19 @@ AI Financial Diagnosis
 ## Web Demo
 
 Users can upload Excel financial data and receive an AI-generated financial diagnosis through a browser interface. The Streamlit application provides schema validation, KPI metrics, Agent workflow visualization, monthly expense trends, abnormal transaction review, and Markdown report download.
+
+## Live Demo
+
+The application is deployed on Streamlit Cloud:
+
+**Demo URL:** [https://ai-accounting-copilot-7cjkjuzcvvhbka3bq3d54.streamlit.app/](https://ai-accounting-copilot-7cjkjuzcvvhbka3bq3d54.streamlit.app/)
+
+Users can directly:
+
+- Upload Excel financial data
+- Run AI Agent analysis
+- View the financial dashboard
+- Download the AI-generated report
 
 ```bash
 streamlit run web_app.py
