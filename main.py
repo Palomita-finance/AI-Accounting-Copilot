@@ -1,11 +1,10 @@
-import pandas as pd
-
 from src.agent.agent_loop import run_agent
+from src.data_loader import load_excel
 
 
 # 读取数据
 
-data = pd.read_excel(
+data = load_excel(
     "data/demo_financial_data.xlsx"
 )
 
