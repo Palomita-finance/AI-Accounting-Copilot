@@ -2,4 +2,5 @@
 *.pyc
 .vscode/
 .env
+.streamlit/secrets.toml
 output/

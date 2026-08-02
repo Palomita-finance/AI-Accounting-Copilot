@@ -1,6 +1,7 @@
-pandas
-matplotlib
-openpyxl
-openai
-python-dotenv
-streamlit
+pandas==3.0.5
+matplotlib==3.11.1
+openpyxl==3.1.5
+xlrd==2.0.2
+openai==2.52.0
+python-dotenv==1.2.2
+streamlit==1.60.0

@@ -6,9 +6,31 @@ from dotenv import load_dotenv
 load_dotenv()
 
 
-client = OpenAI(
-    api_key=os.getenv("DEEPSEEK_API_KEY"),
-    base_url="https://api.deepseek.com"
+def get_api_key():
+    """Read the API key from Streamlit Secrets, then fall back to .env."""
+
+    try:
+        import streamlit as st
+
+        return st.secrets["DEEPSEEK_API_KEY"]
+    except Exception:
+        return os.getenv("DEEPSEEK_API_KEY")
+
+
+class MissingAPIKeyClient:
+    @property
+    def chat(self):
+        raise RuntimeError("Please configure DEEPSEEK_API_KEY")
+
+
+api_key = get_api_key()
+client = (
+    OpenAI(
+        api_key=api_key,
+        base_url="https://api.deepseek.com"
+    )
+    if api_key
+    else MissingAPIKeyClient()
 )
 
 
